@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Repositories\CategoryRepository;
+
 use Illuminate\Http\Request;
-use App\Classes\ApiResponseClass;
+use App\Http\Controllers\Controller;
+use App\Repositories\ListingRepository;
 
-class CategoryController extends Controller
+class ListingController extends Controller
 {
     /**
      * Create a new class instance.
-     */
-    public function __construct(private CategoryRepository $CategoryRepository)
+    */
+    public function __construct(private ListingRepository $ListingRepository)
     {
         //
     }
@@ -20,9 +21,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $Categories=$this->CategoryRepository->index();
-        return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.');
-        
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**

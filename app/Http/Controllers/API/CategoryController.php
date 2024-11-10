@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use app\Repositories\RegionRepository;
+use App\Classes\ApiResponseClass;
+use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
 
-class RegionController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Create a new class instance.
      */
-    public function __construct(private RegionRepository $RegionRepository)
+    public function __construct(private CategoryRepository $CategoryRepository)
     {
         //
     }
@@ -19,7 +21,9 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        $Categories=$this->CategoryRepository->index();
+        return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.');
+        
     }
 
     /**
@@ -41,7 +45,7 @@ class RegionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         //
     }
