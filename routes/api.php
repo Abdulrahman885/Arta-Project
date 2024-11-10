@@ -2,8 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RegionController;
+use App\Http\Controllers\API\RegionController;
+use App\Http\Controllers\API\ListingController;
+use App\Http\Controllers\API\CategoryController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -13,5 +15,6 @@ Route::middleware(['auth', 'second'])->group(function () {
 });
 Route::apiResource('category',CategoryController::class);
 Route::apiResource('region',RegionController::class);
+Route::apiResource('listing',ListingController::class);
 
 
