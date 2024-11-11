@@ -40,4 +40,13 @@ class RegionRepository implements RepositoriesInterface
         $region = $this->getById($id);
         return $region->delete() > 0;
     }
+
+    public function getParents(){
+        return Region::whereNull('parent_id')->get();
+    }
+
+    public function getChildren($id)
+    {
+        return Region::where('parent_id', $id)->get();
+    }
 }

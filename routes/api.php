@@ -13,8 +13,11 @@ Route::get('/user', function (Request $request) {
 Route::middleware(['auth', 'second'])->group(function () {
     
 });
-Route::apiResource('category',CategoryController::class);
-Route::apiResource('region',RegionController::class);
-Route::apiResource('listing',ListingController::class);
+Route::apiResource('/category',CategoryController::class);
+Route::apiResource('/region',RegionController::class);
+Route::apiResource('/listing',ListingController::class);
+
+Route::get('/regions/parents', [RegionController::class, 'getParents']);
+Route::get('/regions/{id}/children', [RegionController::class, 'getChildren']);
 
 

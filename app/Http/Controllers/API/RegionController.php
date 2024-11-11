@@ -25,6 +25,18 @@ class RegionController extends Controller
         return ApiResponseClass::sendResponse($Regions, 'All Regions retrieved successfully.');
     }
 
+     public function getParents()
+    {
+        $Parents=$this->RegionRepository->getParents();
+        return ApiResponseClass::sendResponse($Parents,'All Parents retrieved successfully.');
+    }
+
+    public function getChildren($id)
+    {
+        $Children=$this->RegionRepository->getChildren($id);
+        return ApiResponseClass::sendResponse($Children,'All Children retrieved successfully.');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
