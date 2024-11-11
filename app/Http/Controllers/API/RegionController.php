@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Classes\ApiResponseClass;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use app\Repositories\RegionRepository;
@@ -20,7 +21,8 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        $Regions=$this->RegionRepository->index();
+        return ApiResponseClass::sendResponse($Regions, 'All Regions retrieved successfully.');
     }
 
     /**
