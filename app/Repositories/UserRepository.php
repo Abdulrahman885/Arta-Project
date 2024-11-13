@@ -42,4 +42,9 @@ class UserRepository implements RepositoriesInterface
         $User = $this->getById($id);
         return $User->delete() > 0;
     }
+
+    public function findByEmail($email)
+    {
+        return User::where('email', $email)->first();
+    }
 }
