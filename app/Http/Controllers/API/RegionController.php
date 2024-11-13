@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Classes\ApiResponseClass;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use app\Repositories\RegionRepository;
+use App\Repositories\RegionRepository;
 
 class RegionController extends Controller
 {
@@ -25,7 +25,7 @@ class RegionController extends Controller
         return ApiResponseClass::sendResponse($Regions, 'All Regions retrieved successfully.');
     }
 
-     public function getParents()
+    public function getParents()
     {
         $Parents=$this->RegionRepository->getParents();
         return ApiResponseClass::sendResponse($Parents,'All Parents retrieved successfully.');

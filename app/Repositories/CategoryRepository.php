@@ -42,4 +42,13 @@ class CategoryRepository implements RepositoriesInterface
         $Category = $this->getById($id);
         return $Category->delete() > 0;
     }
+
+    public function getParents(){
+        return Category::whereNull('parent_id')->get();
+    }
+
+    public function getChildren($id)
+    {
+        return Category::where('parent_id', $id)->get();
+    }
 }

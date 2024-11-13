@@ -22,8 +22,19 @@ class CategoryController extends Controller
     public function index()
     {
         $Categories=$this->CategoryRepository->index();
-        return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.');
-        
+        return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.'); 
+    }
+
+    public function getParents()
+    {
+        $Parents=$this->CategoryRepository->getParents();
+        return ApiResponseClass::sendResponse($Parents,'All Parents retrieved successfully.');
+    }
+
+    public function getChildren($id)
+    {
+        $Children=$this->CategoryRepository->getChildren($id);
+        return ApiResponseClass::sendResponse($Children,'All Children retrieved successfully.');
     }
 
     /**

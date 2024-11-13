@@ -17,7 +17,10 @@ Route::apiResource('/category',CategoryController::class);
 Route::apiResource('/region',RegionController::class);
 Route::apiResource('/listing',ListingController::class);
 
-Route::get('/regions/parents', [RegionController::class, 'getParents']);
-Route::get('/regions/{id}/children', [RegionController::class, 'getChildren']);
+Route::get('/regions/parents', [RegionController::class,'getParents']);
+Route::get('/regions/{id}/children', [RegionController::class,'getChildren']);
+
+Route::get('/categories/parents', [CategoryController::class,'getParents']);
+Route::get('/categories/{id}/children', [CategoryController::class,'getChildren']);
 
 
