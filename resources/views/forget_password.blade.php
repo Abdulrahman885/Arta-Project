@@ -28,10 +28,8 @@
             <div class="form-group text-end my-2" >
                 <label class="form-label">البريد الاكتروني</label>
                 <div class="d-flex align-items-center">
-                    <input class="form-control " style="width: 100%;padding: 10px 0;color: #555" name="password" id="password" type="password"  >
-{{--                    <button style="position: absolute; float: right; cursor: pointer;border: 0;border-radius: calc(100%) ;background-color: white" >--}}
-                        <img class="float-end" style="position: absolute" src="{{asset('images/eye-off.svg')}}">
-{{--                    </button>--}}
+                    <input class="form-control " style="width: 100%;padding: 10px 10px;color: #555;max-font-size: 33px"  name="password" id="password" type="password"  placeholder="كلمة المرور" >
+                    <img onclick="show()" style="position: absolute;margin-left: 39vh;cursor: pointer;color: white" id="pass_icon" src="{{asset('images/eye-off.svg')}}">
                 </div>
 
             </div>
@@ -56,15 +54,20 @@
 
     </div>
     <script>
+        var a;
         function show() {
-        let password =document.getElementById('password');
-        if(password.type === "password"){
-            password.type ="text";
-        }else {
-            password.type = "password";
-        }
+            if (a===1){
+                document.getElementById('password').type='password';
+                document.getElementById('pass_icon').src='{{asset('images/eye-off.svg')}}';
+                a=0;
+            }else {
+                document.getElementById('password').type='text';
+                document.getElementById('pass_icon').src='{{asset('images/eye.svg')}}';
+                a=1;
+            }
         }
     </script>
     <script src="{{asset('asset')}}/bootstrap.js"></script>
+</div>
 </body>
 </html>
