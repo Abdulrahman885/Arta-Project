@@ -9,8 +9,6 @@
             <button wire:click="toggleFormRegister" class="btn w-50 text-white my-2 ms-2 rounded-5 {{ $showLogin ? '' : 'custom-bg-primary' }}">انشاء حساب</button>
             <button wire:click="toggleFormLogin" class="btn w-50 text-white  my-2 me-2 rounded-5 {{ $showLogin ? 'custom-bg-primary' : '' }}">تسجيل الدخول</button>  
         </div>
-        
-        
             @if($showLogin)
             <div class="text-end my-3 me-5 text-black-50">
                 <span style="color: rgba(1, 83, 73, 1);">!!اهلا بعودتك مجددا استمتع معنا في تجربة مميزة</span>
@@ -30,7 +28,6 @@
                             <input class="form-control rounded-4 py-2 custom-input" type="password" placeholder=" ">
                             <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
                             @endif
-                            
                         </div>
                     </div>
                     <div class="d-flex align-items-center mx-3 mb-4">
@@ -71,7 +68,7 @@
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">كلمة المرور </label>
                             <div class="d-flex align-items-center position-relative">
-                                @if ($showPassword)
+                            @if ($showPassword)
                             <input class="form-control rounded-4 py-2 custom-input" type="text" placeholder=" ">
                             <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye-off.svg')}}">
                             @else
@@ -87,7 +84,7 @@
                             <input class="form-control py-2 rounded-4 custom-input" type="email">
                         </div>
                         <div class="form-group text-end my-2 col-6">
-                            <label class="form-label me-3">رقم الاتصال</label>
+                            <label class="form-label me-3">رقم التواصل</label>
                             <input class="form-control py-2 rounded-4 custom-input" type="email">
                         </div>
                     </div>
