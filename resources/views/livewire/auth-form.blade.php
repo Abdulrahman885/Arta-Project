@@ -27,7 +27,11 @@
                             <img style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="d-flex align-items-center me-3 mb-4">
+=======
+                    <div class="d-flex align-items-center mx-3 mb-4">
+>>>>>>> parent of 0e8b363 (Update auth-form.blade.php)
                         <input class="form-check-input me-2" type="checkbox" id="rememberMe">
                         <label class="form-label me-auto" for="rememberMe">تذكرني</label>
                         <a href="#" class="link">هل نسيت كلمة المرور؟</a>
