@@ -7,11 +7,29 @@ use Livewire\Component;
 class AuthForm extends Component
 {
     public $showLogin = true;
-  
-    public function toggleForm()
+    public $showPassword = false;
+    public $showConfirmePassword = false;
+
+    public function togglePassword()
     {
-        $this->showLogin = !$this->showLogin; 
+        $this->showPassword = !$this->showPassword;
     }
+
+    public function toggleConfirmePassword()  
+    {
+        $this->showConfirmePassword=!$this->showConfirmePassword;
+    }
+
+    public function toggleFormLogin()
+    {
+        $this->showLogin = true; 
+    }
+
+    public function toggleFormRegister()
+    {
+        $this->showLogin = false; 
+    }
+
     public function render()
     {
         return view('livewire.auth-form');
