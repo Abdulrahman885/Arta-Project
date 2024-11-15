@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('user_id')->references('id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->text('description');
             $table->decimal('price', 10, 2);
-            $table->foreignId('category_id')->references('id')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('region_id')->references('id')->constrained('regions')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
             $table->enum('status', ['active', 'closed']);
             $table->timestamps();
         });
