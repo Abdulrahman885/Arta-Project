@@ -30,10 +30,10 @@
                             @endif
                         </div>
                     </div>
-                    <div class="d-flex align-items-center mx-3 mb-4">
-                        <input class="form-check-input me-2" type="checkbox" id="rememberMe">
-                        <label class="form-label me-auto" for="rememberMe">تذكرني</label>
-                        <a href="#" class="link">هل نسيت كلمة المرور؟</a>
+                    <div class="d-flex align-items-center mx-3 mb-2">
+                        <input class="form-check-input me-2" style=" width: 20px;height: 20px; cursor: pointer;" type="checkbox" id="rememberMe">
+                        <label class="form-label me-auto fw-bold pt-2" for="rememberMe">تذكرني</label>
+                        <a href="#" class="link fw-bold text-decoration-none" style="color:rgba(1, 73, 107, 0.68);">هل نسيت كلمة المرور؟</a>
                     </div>
                     <div class="text-center">
                         <input class="btn w-100 py-3 rounded-4 text-white" style="background-color:rgba(0, 91, 134, 0.88)" type="submit" value="تسجيل الدخول">
