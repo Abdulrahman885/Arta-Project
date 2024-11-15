@@ -4,7 +4,7 @@
         <div class="col-lg-4 d-none d-lg-flex d-none mt-1">    <img height="200px" width="200px" style="margin-right: 100px" src="{{asset('assets/img/icon.png')}}"></div>
         <h5 class="col-5 text-center ms-4 " style="padding-top: 50%" >لا تفوت الفرصة، كن جزءًا  <br>من مجتمع المتسوقين الأذكياء</h5>
     </div>
-    <div class="col-12 col-md-5 container my-4 p-3 rounded-5 custom-shadow" style="background-color: #E7E7E7;min-width: 500px; max-width: 555px; min-height: auto;">
+    <div class="col-12 col-md-5 container my-4 p-3 rounded-5 custom-shadow" style="background-color: #E7E7E7;min-width: 500px; max-width: 555px; min-height:auto;">
         <div class="rounded-5 d-flex" style="background-color: rgba(1, 73, 107, 0.68)">
             <button wire:click="toggleForm" class="btn w-50 text-white my-2 ms-2 rounded-5 {{ $showLogin ? '' : 'custom-bg-primary' }}">انشاء حساب</button>
             <button wire:click="toggleForm" class="btn w-50 text-white  my-2 me-2 rounded-5 {{ $showLogin ? 'custom-bg-primary' : '' }}">تسجيل الدخول</button>
