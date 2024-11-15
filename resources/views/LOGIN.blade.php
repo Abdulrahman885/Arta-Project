@@ -27,6 +27,9 @@
             align-items: center; 
         }
 
+        .custom-bg-primary{
+            background-color:rgba(0, 91, 134, 0.88)
+        }
         .custom-button:hover {
             background-color: rgba(0, 91, 134, 0.88); 
             color: white; 

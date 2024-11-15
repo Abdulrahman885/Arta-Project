@@ -6,8 +6,8 @@
     </div>
     <div class="col-12 col-md-5 container my-4 p-3 rounded-5 custom-shadow" style="background-color: #E7E7E7;min-width: 500px; max-width: 555px; min-height: auto;">
         <div class="rounded-5 d-flex" style="background-color: rgba(1, 73, 107, 0.68)">
-            <button wire:click="toggleForm" class="btn w-50 text-white my-2 ms-2 rounded-5 {{ $showLogin ? '' : 'bg-primary' }}">انشاء حساب</button>
-            <button wire:click="toggleForm" class="btn w-50 text-white  my-2 me-2 rounded-5 {{ $showLogin ? 'bg-primary' : '' }}">تسجيل الدخول</button>  
+            <button wire:click="toggleForm" class="btn w-50 text-white my-2 ms-2 rounded-5 {{ $showLogin ? '' : 'custom-bg-primary' }}">انشاء حساب</button>
+            <button wire:click="toggleForm" class="btn w-50 text-white  my-2 me-2 rounded-5 {{ $showLogin ? 'custom-bg-primary' : '' }}">تسجيل الدخول</button>  
         </div>
         
         
