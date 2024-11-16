@@ -33,22 +33,19 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-md-6 d-none d-lg-flex row ">
-            <div class="col-2">  <img style="width:100vh ;min-height: 100vh;max-height: 105vh " src="{{asset('assets/img/backgroundlogin.png')}}"></div>
-            <div class="col-lg-4 d-none d-lg-flex d-none mt-1">    <img height="200px" width="200px" style="margin-right: 100px" src="{{asset('assets/img/icon.png')}}"></div>
-            <h5 class="col-5 text-center ms-4 " style="padding-top: 50%" >لا تفوت الفرصة، كن جزءًا  <br>من مجتمع المتسوقين الأذكياء</h5>
+        <div class="col-md-5 d-none d-lg-flex row ">
+            <div class="col-2 ">  <img style="width:100vh ;min-height: 100vh;max-height: 112vh " src="{{asset('assets/img/backgroundlogin.png')}}"></div>
+            <div class="col-lg-4 mt-1">    <img height="200px" width="200px" style="margin-right: 100px" src="{{asset('assets/img/icon.png')}}"></div>
+            <h5 class="col-5 text-center mt-0 ms-4 " style="padding-top: 35%" >لا تفوت الفرصة، كن جزءًا  <br>من مجتمع المتسوقين الأذكياء</h5>
         </div>
-        <div class="col-12 col-md-5 container my-5  p-4 rounded-5 custom-shadow" style="background-color: #E7E7E7;min-width: 500px; max-width: 555px; max-height: fit-content">
+        <div class="col-12 col-md-5 container my-5 p-3 rounded-5 custom-shadow" style="background-color: #E7E7E7;min-width: 450px; max-width: 500px; max-height: fit-content">
             <form class="my-1 mx-3 p-2">
 
                 <div class="text-end my-3 me-3 "> <h2>هل نسيت كلمة المرور؟</h2></div>
-                <div class="text-end my-3 me-3  text-black-50">لا تقلق، أدخل بريدك الإلكتروني أدناه لاستعادة كلمة المرور الخاصة بك </div>
+                <div class="text-end my-3 me-3 fw-bold text-black-50">لا تقلق، أدخل بريدك الإلكتروني أدناه لاستعادة كلمة المرور الخاصة بك </div>
                 <div class="form-group text-end my-2" >
                     <label class="form-label me-3">البريد الاكتروني</label>
-                    <div class="d-flex align-items-center">
-                        <input class="form-control py-2 rounded-4 custom-input" style="width: 100%;padding: 10px 10px;color: #555;max-font-size: 33px"  name="email" id="email" type="email" >
-                    </div>
-    
+                    <input class="form-control py-2 rounded-4 custom-input" style="width: 100%;padding: 10px 10px;color: #555;max-font-size: 33px"  name="email" id="email" type="email" >
                 </div>
                
                 <div class="text-center"><input class="btn  w-75 mt-4 py-3 rounded-4 text-white" style="background-color: #01496B" type="submit" value="ارسال"></div>
@@ -65,6 +62,13 @@
                 </div>
             </div>
     
+        </div>
+        <div class="text-end d-none d-md-flex me-2 p-3 col-1 px-4">
+            <a href="{{ url('login') }}" style="height: 45px; width: 45px;">
+                <button class="rounded-circle" style="height: 45px; border: none; background-color: #D2E1E8; width: 45px;">
+                    <img src="{{ asset('assets/img/chevron-right.svg') }}">
+                </button>
+            </a>
         </div>
     </div>
     
