@@ -67,7 +67,7 @@
                     <span style="color: rgba(1, 83, 73, 1);">!نرحب بوجودك معنا استمتع بخدمات مميزة</span>
                 </div>
 
-                {{-- form register --}}
+                {{-- start form register --}}
                 <form class="my-3 mx-2" method="POST" action="{{ route('register') }}">
                     @csrf
 
@@ -123,16 +123,23 @@
 
             @endif
             <hr>
+            {{-- start login with apple and google --}}
             <div class="row text-center d-flex justify-content-center">
+                {{-- start login with apple --}}
                 <div class="col-5 mx-2 btn border shadow rounded-4 custom-button">
                     <img src="{{asset('assets/img/apple-icon.png')}}" alt="Apple">
                     <span>المواصلة مع أبل</span>
                 </div>
+                {{-- end login with apple --}}
+
+                {{-- start login with google --}}
                 <div class="col-5 mx-2 btn border shadow rounded-4 custom-button">
                     <img src="{{asset('assets/img/google.svg')}}" alt="Google">
                     <span>المواصلة مع قوقل</span>
                 </div>
+                {{-- end login with google --}}
             </div>
+            {{-- end login with apple and google --}}
 
     </div>
     <div class=" d-none d-md-flex me-2 p-3 col-1 px-4">
