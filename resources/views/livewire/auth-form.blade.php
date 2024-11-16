@@ -69,7 +69,7 @@
                 {{-- form register --}}
                 <form class="my-3 mx-2" method="POST" action="{{ route('register') }}">
                     @csrf
-                    
+
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">الاسم بالكامل</label>
                         <input class="form-control py-2 rounded-4 custom-input" style=" direction: rtl; direction: rtl;" type="text">
@@ -107,11 +107,11 @@
                     <div class="row">
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم الواتساب</label>
-                            <input class="form-control py-2 rounded-4 custom-input" type="email">
+                            <input class="form-control py-2 rounded-4 custom-input" type="number">
                         </div>
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم التواصل</label>
-                            <input class="form-control py-2 rounded-4 custom-input" type="email">
+                            <input class="form-control py-2 rounded-4 custom-input" type="number">
                         </div>
                     </div>
                     <div class="text-center">
