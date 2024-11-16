@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6 d-none d-lg-flex row ">
-        <div class="col-2">  <img style="width:100vh ;height: 100vh " src="{{asset('assets/img/backgroundlogin.png')}}"></div>
+        <div class="col-2">  <img style="width:100vh ;min-height: 100vh;max-height: 105vh " src="{{asset('assets/img/backgroundlogin.png')}}"></div>
         <div class="col-lg-4 d-none d-lg-flex d-none mt-1">    <img height="200px" width="200px" style="margin-right: 100px" src="{{asset('assets/img/icon.png')}}"></div>
         <h5 class="col-5 text-center ms-4 " style="padding-top: 50%" >لا تفوت الفرصة، كن جزءًا  <br>من مجتمع المتسوقين الأذكياء</h5>
     </div>
@@ -13,37 +13,63 @@
             <div class="text-end my-3 me-5 text-black-50">
                 <span style="color: rgba(1, 83, 73, 1);">!!اهلا بعودتك مجددا استمتع معنا في تجربة مميزة</span>
             </div>
-                <form class="my-3 mx-2">
+
+                {{-- form Login --}}
+                <form class="my-3 mx-2" method="POST" action="{{ route('login') }}">
+                    @csrf
+                    {{-- input Username OR Email --}}
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">اسم المستخدم أو البريد الإلكتروني</label>
-                        <input class="form-control py-2 rounded-4 custom-input" type="email">
+                        <input class="form-control py-2 rounded-4 custom-input @error('email') is-invalid @enderror" type="email" name="email" id="email" value="{{ old('email') }}" required>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
+
+                    {{-- input Password --}}
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">كلمة المرور</label>
                         <div class="d-flex align-items-center position-relative">
                             @if ($showPassword)
-                            <input class="form-control rounded-4 py-2 custom-input" type="text" placeholder=" ">
-                            <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye-off.svg')}}">
+                                <input class="form-control rounded-4 py-2 custom-input @error('password') is-invalid @enderror" type="text" name="password" id="password" required autocomplete="current-password">
+                                <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye-off.svg')}}">
                             @else
-                            <input class="form-control rounded-4 py-2 custom-input" type="password" placeholder=" ">
-                            <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
+                                <input class="form-control rounded-4 py-2 custom-input @error('password') is-invalid @enderror" type="password" name="password" id="password" required autocomplete="current-password">
+                                <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
                             @endif
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
+
+                    {{-- rememberMe AND forget password --}}
                     <div class="d-flex align-items-center mx-3 mb-2">
-                        <input class="form-check-input me-2" style=" width: 20px;height: 20px; cursor: pointer;" type="checkbox" id="rememberMe">
+                        <input class="form-check-input custom-input me-2" style=" width: 20px;height: 20px; cursor: pointer;" name="remember" id="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
                         <label class="form-label me-auto fw-bold pt-2" for="rememberMe">تذكرني</label>
-                        <a href="#" class="link fw-bold text-decoration-none" style="color:rgba(1, 73, 107, 0.68);">هل نسيت كلمة المرور؟</a>
+                        <a href="{{ route('password.request') }}" class="link fw-bold text-decoration-none" style="color:rgba(1, 73, 107, 0.68);">هل نسيت كلمة المرور؟</a>
                     </div>
+
+                    {{-- inout submit --}}
                     <div class="text-center">
                         <input class="btn w-100 py-3 rounded-4 text-white" style="background-color:rgba(0, 91, 134, 0.88)" type="submit" value="تسجيل الدخول">
                     </div>
                 </form>
-            @else
+                {{-- End form login --}}
+
+                @else
                 <div class="text-end my-3 me-5 text-black-50">
                     <span style="color: rgba(1, 83, 73, 1);">!نرحب بوجودك معنا استمتع بخدمات مميزة</span>
                 </div>
-                <form class="my-3 mx-2">
+
+                {{-- form register --}}
+                <form class="my-3 mx-2" method="POST" action="{{ route('register') }}">
+                    @csrf
+                    
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">الاسم بالكامل</label>
                         <input class="form-control py-2 rounded-4 custom-input" style=" direction: rtl; direction: rtl;" type="text">
@@ -92,6 +118,8 @@
                         <input class="btn w-100 py-3 rounded-4 text-white" style="background-color:rgba(0, 91, 134, 0.88)" type="submit" value="إنشاء حساب">
                     </div>
                 </form>
+                {{-- End form register --}}
+
             @endif
             <hr>
             <div class="row text-center d-flex justify-content-center">
