@@ -34,6 +34,11 @@
             background-color: rgba(0, 91, 134, 0.88); 
             color: white; 
         }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
