@@ -94,10 +94,10 @@
                             <label class="form-label me-3">إعادة كتابة كلمة المرور</label>
                             <div class="d-flex align-items-center position-relative">
                             @if ($showConfirmePassword)
-                            <input class="form-control rounded-4 py-2 custom-input" name="password_confirmation" type="text" required>
+                            <input class="form-control rounded-4 py-2 @error('password_confirmation') border-red @else custom-input @enderror" name="password_confirmation" type="text" required>
                             <img wire:click="toggleConfirmePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye-off.svg')}}">
                             @else
-                            <input class="form-control rounded-4 py-2 custom-input" name="password_confirmation" type="password" required>
+                            <input class="form-control rounded-4 py-2 @error('password_confirmation') border-red @else custom-input @enderror" name="password_confirmation" type="password" required>
                             <img wire:click="toggleConfirmePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
                             @endif
                             </div>
