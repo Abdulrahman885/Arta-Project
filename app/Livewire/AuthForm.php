@@ -6,10 +6,14 @@ use Livewire\Component;
 
 class AuthForm extends Component
 {
-    public $showLogin = true;
+    public $showLogin;
     public $showPassword = false;
     public $showConfirmePassword = false;
 
+    public function mount()
+    {
+        $this->showLogin = request()->is('login');
+    }
     public function togglePassword()
     {
         $this->showPassword = !$this->showPassword;
