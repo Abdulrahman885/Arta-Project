@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Classes\ApiResponseClass;
 use App\Repositories\UserRepository;
 //use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
@@ -11,29 +12,25 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 class UserAuthController extends Controller
 {
+    /**
+     * Create a new class instance.
+     */
+    public function __construct(private UserRepository $UserRepository)
+    {
+        //
+    }
+
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'username' => 'required|unique:users',
+            'password' => 'required|confirmed',
             'whatsapp_number'=>'required|unique:users|integer',
             'contact_number'=>'required|unique:users|integer',
         ]);
-        $user=new User([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'username'=>$request->username,
-            'contact_number'=>$request->contact_number,
-            'whatsapp_number'=>$request->whatsapp_number,
-            'password'=>bcrypt($request->password)
-        ]);
-        $user->save();
-        return response()->json([
-            'message'=>'User created successfully',
-        ],200);
-
+        $userData=$this->UserRepository->store($request->all());
+        return ApiResponseClass::sendResponse($userData,'User created successfully');
     }
 
     public function login(Request $request)
