@@ -73,11 +73,21 @@
 
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">الاسم بالكامل</label>
-                        <input class="form-control py-2 rounded-4 custom-input" type="text" name="name" required style=" direction: rtl; direction: rtl;" >
+                        <input class="form-control py-2 rounded-4 @error('name') border-red @else custom-input @enderror " value="{{ old('name') }}" type="text" name="name" required style=" direction: rtl" >
+                        @error('name')
+                            <span class="me-2 validation-error">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">البريد الإلكتروني</label>
-                        <input class="form-control py-2 rounded-4 custom-input" name="email" type="email" required>
+                        <input class="form-control py-2 rounded-4 @error('email') border-red @else custom-input @enderror" name="email" value="{{ old('name') }}" type="email" required>
+                        @error('email')
+                            <span class="me-2 validation-error">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="form-group text-end my-2 col-6">
@@ -96,23 +106,38 @@
                             <label class="form-label me-3">كلمة المرور </label>
                             <div class="d-flex align-items-center position-relative">
                             @if ($showPassword)
-                            <input class="form-control rounded-4 py-2 custom-input" name="password" type="text" required>
+                            <input class="form-control rounded-4 py-2 @error('password') border-red @else custom-input @enderror" name="password" type="text" required>
                             <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye-off.svg')}}">
                             @else
-                            <input class="form-control rounded-4 py-2 custom-input" name="password" type="password" required>
+                            <input class="form-control rounded-4 py-2 @error('password') border-red @else custom-input @enderror" name="password" type="password" required>
                             <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
                             @endif
                             </div>
+                            @error('password')
+                                <span class="me-2 validation-error">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم الواتساب</label>
-                            <input class="form-control py-2 rounded-4 custom-input" name="whatsapp_number" type="number" required>
+                            <input class="form-control py-2 rounded-4 @error('whatsapp_number') border-red @else custom-input @enderror" name="whatsapp_number" type="number" required>
+                            @error('whatsapp_number')
+                                <span class="me-2 validation-error">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم التواصل</label>
-                            <input class="form-control py-2 rounded-4 custom-input" name="contact_number" type="number" required>
+                            <input class="form-control py-2 rounded-4 @error('contact_number') border-red @else custom-input @enderror" name="contact_number" type="number" required>
+                            @error('contact_number')
+                                <span class="me-2 validation-error">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="text-center">

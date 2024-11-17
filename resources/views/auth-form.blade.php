@@ -34,11 +34,19 @@
             background-color: rgba(0, 91, 134, 0.88); 
             color: white; 
         }
+        .border-red {
+        border: 2px solid rgba(142, 2, 5, 0.97);
+        }  
+        .validation-error{
+            color: rgba(142, 2, 5, 0.97);
+        }
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
+        
+
     </style>
 </head>
 <body>
