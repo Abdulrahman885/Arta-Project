@@ -45,5 +45,12 @@
     @livewire('auth-form')
 
     @livewireScripts
+    <script>
+        function changeUrl(url) {
+            history.pushState(null, '', url);
+        }
+    </script>
+    
+    
 </body>
 </html>
