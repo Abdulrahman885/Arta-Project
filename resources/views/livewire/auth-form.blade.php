@@ -71,6 +71,7 @@
                 <form class="my-3 mx-2" method="POST" action="{{ route('register') }}">
                     @csrf
 
+                    {{-- start name input --}}
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">الاسم بالكامل</label>
                         <input class="form-control py-2 rounded-4 @error('name') border-red @else custom-input @enderror " value="{{ old('name') }}" type="text" name="name" required style=" direction: rtl" >
@@ -80,6 +81,9 @@
                             </span>
                         @enderror
                     </div>
+                    {{-- end name input --}}
+
+                    {{-- start email input --}}
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">البريد الإلكتروني</label>
                         <input class="form-control py-2 rounded-4 @error('email') border-red @else custom-input @enderror" name="email" value="{{ old('email') }}" type="email" required>
@@ -89,6 +93,9 @@
                             </span>
                         @enderror
                     </div>
+                    {{-- end email input --}}
+
+                    {{-- start password input --}}
                     <div class="row">
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">إعادة كتابة كلمة المرور</label>
@@ -115,12 +122,16 @@
                             </div>
                         </div>
                         @error('password')
-                        <span class="me-2 validation-error">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                            <span class="me-2 validation-error">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
+                    {{-- end password input --}}
+
+                    {{-- start number inputs --}}
                     <div class="row">
+                        {{-- start whatsapp_number input --}}
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم الواتساب</label>
                             <input class="form-control py-2 rounded-4 @error('whatsapp_number') border-red @else custom-input @enderror" value="{{ old('whatsapp_number') }}" name="whatsapp_number" type="number" required>
@@ -130,6 +141,9 @@
                                 </span>
                             @enderror
                         </div>
+                        {{-- end whatsapp_number input --}}
+
+                        {{-- start contact_number input --}}
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم التواصل</label>
                             <input class="form-control py-2 rounded-4 @error('contact_number') border-red @else custom-input @enderror"  value="{{ old('contact_number') }}" name="contact_number" type="number" required>
@@ -139,10 +153,16 @@
                                 </span>
                             @enderror
                         </div>
+                        {{-- end contact_number input --}}
                     </div>
+                    {{-- end number inputs --}}
+
+                    {{-- start submit button register --}}
                     <div class="text-center">
                         <input class="btn w-100 py-3 rounded-4 text-white" style="background-color:rgba(0, 91, 134, 0.88)" type="submit" value="إنشاء حساب">
                     </div>
+                    {{-- end submit button register --}}
+                
                 </form>
                 {{-- End form register --}}
 
