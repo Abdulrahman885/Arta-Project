@@ -73,21 +73,21 @@
 
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">الاسم بالكامل</label>
-                        <input class="form-control py-2 rounded-4 custom-input" style=" direction: rtl; direction: rtl;" type="text">
+                        <input class="form-control py-2 rounded-4 custom-input" type="text" name="name" required style=" direction: rtl; direction: rtl;" >
                     </div>
                     <div class="form-group text-end my-2">
                         <label class="form-label me-3">البريد الإلكتروني</label>
-                        <input class="form-control py-2 rounded-4 custom-input" type="email">
+                        <input class="form-control py-2 rounded-4 custom-input" name="email" type="email" required>
                     </div>
                     <div class="row">
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">إعادة كتابة كلمة المرور</label>
                             <div class="d-flex align-items-center position-relative">
                             @if ($showConfirmePassword)
-                            <input class="form-control rounded-4 py-2 custom-input" type="text" placeholder=" ">
+                            <input class="form-control rounded-4 py-2 custom-input" name="password_confirmation" type="text" required>
                             <img wire:click="toggleConfirmePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye-off.svg')}}">
                             @else
-                            <input class="form-control rounded-4 py-2 custom-input" type="password" placeholder=" ">
+                            <input class="form-control rounded-4 py-2 custom-input" name="password_confirmation" type="password" required>
                             <img wire:click="toggleConfirmePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
                             @endif
                             </div>
@@ -96,10 +96,10 @@
                             <label class="form-label me-3">كلمة المرور </label>
                             <div class="d-flex align-items-center position-relative">
                             @if ($showPassword)
-                            <input class="form-control rounded-4 py-2 custom-input" type="text" placeholder=" ">
+                            <input class="form-control rounded-4 py-2 custom-input" name="password" type="text" required>
                             <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye-off.svg')}}">
                             @else
-                            <input class="form-control rounded-4 py-2 custom-input" type="password" placeholder=" ">
+                            <input class="form-control rounded-4 py-2 custom-input" name="password" type="password" required>
                             <img wire:click="togglePassword" style="position: absolute; right: 15px; cursor: pointer;" src="{{asset('assets/img/eye.svg')}}">
                             @endif
                             </div>
@@ -108,11 +108,11 @@
                     <div class="row">
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم الواتساب</label>
-                            <input class="form-control py-2 rounded-4 custom-input" type="number">
+                            <input class="form-control py-2 rounded-4 custom-input" name="whatsapp_number" type="number" required>
                         </div>
                         <div class="form-group text-end my-2 col-6">
                             <label class="form-label me-3">رقم التواصل</label>
-                            <input class="form-control py-2 rounded-4 custom-input" type="number">
+                            <input class="form-control py-2 rounded-4 custom-input" name="contact_number" type="number" required>
                         </div>
                     </div>
                     <div class="text-center">

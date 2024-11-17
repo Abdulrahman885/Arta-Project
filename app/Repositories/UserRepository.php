@@ -27,6 +27,7 @@ class UserRepository implements RepositoriesInterface
 
     public function store(array $data) : User
     {
+        $data['username'] = $this->generateUniqueUsername($data['email']);
         return User::create($data);
     }
 
@@ -46,5 +47,19 @@ class UserRepository implements RepositoriesInterface
     public function findByEmail($email)
     {
         return User::where('email', $email)->first();
+    }
+
+    public function generateUniqueUsername($email)
+    {
+        $baseUsername = explode('@', $email)[0];
+        $uniqueUsername = $baseUsername;
+
+        $count = 1;
+        while (User::where('username', $uniqueUsername)->exists()) {
+            $uniqueUsername = $baseUsername . '-' . $count;
+            $count++;
+        }
+
+        return $uniqueUsername;
     }
 }
