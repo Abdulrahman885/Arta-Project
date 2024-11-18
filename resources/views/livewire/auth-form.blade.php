@@ -78,6 +78,7 @@
                         @error('name')
                             <span class="me-2 validation-error">
                                 <strong>{{ $message }}</strong>
+                                <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                             </span>
                         @enderror
                     </div>
@@ -90,6 +91,7 @@
                         @error('email')
                             <span class="me-2 validation-error">
                                 <strong>{{ $message }}</strong>
+                                <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                             </span>
                         @enderror
                     </div>
@@ -124,6 +126,7 @@
                         @error('password')
                             <span class="me-2 validation-error">
                                 <strong>{{ $message }}</strong>
+                                <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                             </span>
                         @enderror
                     </div>
@@ -138,6 +141,7 @@
                             @error('whatsapp_number')
                                 <span class="me-2 validation-error">
                                     <strong>{{ $message }}</strong>
+                                    <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                                 </span>
                             @enderror
                         </div>
@@ -150,6 +154,7 @@
                             @error('contact_number')
                                 <span class="me-2 validation-error">
                                     <strong>{{ $message }}</strong>
+                                    <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                                 </span>
                             @enderror
                         </div>
