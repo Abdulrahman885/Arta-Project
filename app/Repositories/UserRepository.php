@@ -14,12 +14,12 @@ class UserRepository implements RepositoriesInterface
     {
         //
     }
-    
+
     public function index() : \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         return User::paginate(10);
     }
-    
+
     public function getById($id) : User
     {
         return User::findOrFail($id);
