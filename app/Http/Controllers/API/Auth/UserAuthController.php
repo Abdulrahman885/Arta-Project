@@ -23,11 +23,11 @@ class UserAuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
-            'whatsapp_number'=>'required|unique:users|integer',
-            'contact_number'=>'required|unique:users|integer',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'whatsapp_number'=>['required','string','max:16','regex:/^[0-9]+$/'],
+            'contact_number'=>['required','string','max:16','regex:/^[0-9]+$/']
         ]);
         $userData=$this->UserRepository->store($request->all());
         return ApiResponseClass::sendResponse($userData,'User created successfully');
