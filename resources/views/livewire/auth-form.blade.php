@@ -76,7 +76,7 @@
                         <label class="form-label me-3">الاسم بالكامل</label>
                         <input class="form-control py-2 rounded-4 @error('name') border-red @else custom-input @enderror " value="{{ old('name') }}" type="text" name="name" required style=" direction: rtl" >
                         @error('name')
-                            <span class="me-2 validation-error">
+                            <span class="me-2 custom-validation-error">
                                 <strong>{{ $message }}</strong>
                                 <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                             </span>
@@ -89,7 +89,7 @@
                         <label class="form-label me-3">البريد الإلكتروني</label>
                         <input class="form-control py-2 rounded-4 @error('email') border-red @else custom-input @enderror" name="email" value="{{ old('email') }}" type="email" required>
                         @error('email')
-                            <span class="me-2 validation-error">
+                            <span class="me-2 custom-validation-error">
                                 <strong>{{ $message }}</strong>
                                 <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                             </span>
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         @error('password')
-                            <span class="me-2 validation-error">
+                            <span class="me-2 custom-validation-error">
                                 <strong>{{ $message }}</strong>
                                 <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                             </span>
@@ -139,7 +139,7 @@
                             <label class="form-label me-3">رقم الواتساب</label>
                             <input class="form-control py-2 rounded-4 @error('whatsapp_number') border-red @else custom-input @enderror" value="{{ old('whatsapp_number') }}" name="whatsapp_number" type="number" required>
                             @error('whatsapp_number')
-                                <span class="me-2 validation-error">
+                                <span class="me-2 custom-validation-error">
                                     <strong>{{ $message }}</strong>
                                     <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                                 </span>
@@ -152,7 +152,7 @@
                             <label class="form-label me-3">رقم التواصل</label>
                             <input class="form-control py-2 rounded-4 @error('contact_number') border-red @else custom-input @enderror"  value="{{ old('contact_number') }}" name="contact_number" type="number" required>
                             @error('contact_number')
-                                <span class="me-2 validation-error">
+                                <span class="me-2 custom-validation-error">
                                     <strong>{{ $message }}</strong>
                                     <img src="{{asset('assets/img/Vector.svg')}}" alt="">
                                 </span>
