@@ -19,23 +19,23 @@ class AuthForm extends Component
         $this->showPassword = !$this->showPassword;
     }
 
-    public function toggleConfirmePassword()  
+    public function toggleConfirmePassword()
     {
         $this->showConfirmePassword=!$this->showConfirmePassword;
     }
 
     public function toggleFormLogin()
     {
-        $this->showLogin = true; 
+        $this->showLogin = true;
     }
 
     public function toggleFormRegister()
     {
-        $this->showLogin = false; 
+        $this->showLogin = false;
     }
 
     public function render()
-    {  
-        return view('livewire.auth-form');
+    {
+        return view('livewire.add_new_ads');
     }
 }

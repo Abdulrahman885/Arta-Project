@@ -167,7 +167,7 @@
                         <input class="btn w-100 py-3 rounded-4 text-white" style="background-color:rgba(0, 91, 134, 0.88)" type="submit" value="إنشاء حساب">
                     </div>
                     {{-- end submit button register --}}
-                
+
                 </form>
                 {{-- End form register --}}
 

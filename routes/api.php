@@ -27,6 +27,7 @@ Route::get('/categories/{id}/children', [CategoryController::class,'getChildren'
 
 Route::post('/register',[UserAuthController::class,'register']);
 Route::post('/login',[UserAuthController::class,'login']);
+Route::post('/logout',[UserAuthController::class,'logout']);
 Route::get('/login/google', [UserAuthController::class, 'redirectToGoogle']);
 Route::get('/login/google/callback', [UserAuthController::class, 'handleGoogleCallback']);
 

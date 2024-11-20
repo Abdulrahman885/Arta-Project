@@ -43,6 +43,7 @@ class UserAuthController extends Controller
         if (Auth::attempt($credentials)) {
             return response()->json([
                 'message'=>'User logged in successfully',
+
             ],200);
         }else{
             return response()->json([
@@ -63,6 +64,7 @@ class UserAuthController extends Controller
     }
     public function logout(Request $request)
     {
-       //
+       $request->user()->token()->revoke();
+
     }
 }
