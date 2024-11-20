@@ -9,6 +9,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/add', function () {
+    return view('add_new');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

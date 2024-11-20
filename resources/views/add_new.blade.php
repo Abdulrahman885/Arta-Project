@@ -1,21 +1,31 @@
-<div class="row">
-        <div class="container">
-
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite(['resources/sass/app.scss','resources/js/app.js'])
+    <title>Document</title>
+</head>
+<body>
+    {{-- navbar add new listing --}}
+    <div class="d-flex flex-row justify-content-between" style="max-height: 90px">
+        <div class="mt-1">    
+            <img  width="200px"  src="{{asset('assets/img/icon.png')}}">
         </div>
-    <div class="col d-none d-lg-flex row  text-center">
-        <div class="col-lg-2 mt-1 mx-4 text-start">    <img height="200px" width="200px"  src="{{asset('assets/img/icon.png')}}"></div>
-        <h2 class="col-lg-8 mt-5 text-center mx-2" >إضافة اعلان جديد</h2>
-        <div class=" d-none d-md-flex mt-5 col-1" style="margin-left: 50px ">
+        <div class="mt-4">
+            <h2  >إضافة اعلان جديد</h2>
+        </div>
+        <div class="m-3">
             <a href="{{ url('login') }}" style="height: 45px; width: 45px;">
                 <button class="rounded-circle" style="height: 45px; border: none; background-color: #D2E1E8; width: 45px;">
                     <img src="{{ asset('assets/img/chevron-right.svg') }}">
                 </button>
             </a>
         </div>
-
     </div>
+    {{-- form for add new listing --}}
     <div class="row " >
-
         <div class="col-6 text-end container  p-lg-5 ">
             <form>
                 <label class="py-3">اختر القسم الرئيسي</label>
@@ -104,3 +114,7 @@
         </div>
     </div>
 </div>
+
+    
+</body>
+</html>

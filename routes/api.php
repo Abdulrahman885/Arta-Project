@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegionController;
 use App\Http\Controllers\API\ListingController;
 use App\Http\Controllers\API\CategoryController;
-use App\Http\Controllers\api\Auth\UserAuthController;
+use App\Http\Controllers\API\Auth\UserAuthController;
 
 
 Route::get('/user', function (Request $request) {
