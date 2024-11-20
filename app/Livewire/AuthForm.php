@@ -36,6 +36,6 @@ class AuthForm extends Component
 
     public function render()
     {
-        return view('livewire.add_new_ads');
+        return view('livewire.auth-form');
     }
 }
