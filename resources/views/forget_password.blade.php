@@ -6,30 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite(['resources/sass/app.scss','resources/js/app.js'])
-    <style>
-        .custom-shadow {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
-        }
-        .custom-input {
-            border: 2px solid rgba(24, 88, 120, 1);
-        }
-        .custom-input:focus {
-            border-color: rgba(24, 88, 120, 1); 
-            box-shadow: none; 
-        }
-        .custom-bg-primary{
-            background-color:rgba(0, 91, 134, 0.88)
-        }
-        .custom-button:hover {
-            background-color: rgba(0, 91, 134, 0.88); 
-            color: white; 
-        }
-        .custom-button {
-            background-color: white;
-            color: black;
-            align-items: center; 
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('assets/css/custom-style.css')}}">
 </head>
 <body>
     <div class="row">
