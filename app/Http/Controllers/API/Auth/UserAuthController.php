@@ -10,8 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\PersonalAccessToken;
 use Dotenv\Exception\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 class UserAuthController extends Controller
 {
@@ -74,7 +75,7 @@ class UserAuthController extends Controller
     }
     public function logout(Request $request)
     {
-       $request->user()->token()->revoke();
-
+        PersonalAccessToken::findToken($request->bearerToken())->delete();
+        return ApiResponseClass::sendResponse(null, 'Logged out successfully');
     }
 }
