@@ -42,8 +42,8 @@ class UserAuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'login' => 'required|string',
-            'password' => 'required|string',
+            'login' => ['required','string'],
+            'password' => ['required','string']
         ]);
         if ($validator->fails()) 
             return ApiResponseClass::sendValidationError($validator->errors()
