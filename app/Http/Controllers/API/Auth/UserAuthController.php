@@ -11,6 +11,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Dotenv\Exception\ValidationException;
 
 class UserAuthController extends Controller
 {
@@ -24,31 +25,29 @@ class UserAuthController extends Controller
 
     public function register(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'whatsapp_number'=>['required','string','max:16','regex:/^[0-9]+$/'],
-                'contact_number'=>['required','string','max:16','regex:/^[0-9]+$/']
-            ]);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'Validation errors occurred.',
-                'errors' => $e->errors(),
-            ], 422);
-        }
-        
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'whatsapp_number'=>['required','string','max:16','regex:/^[0-9]+$/'],
+            'contact_number'=>['required','string','max:16','regex:/^[0-9]+$/']
+        ]);
+        if ($validator->fails()) 
+            return ApiResponseClass::sendValidationError($validator->errors()
+        );
         $userData=$this->UserRepository->store($request->all());
         return ApiResponseClass::sendResponse($userData,'User created successfully');
     }
 
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'login' => 'required|string',
             'password' => 'required|string',
         ]);
+        if ($validator->fails()) 
+            return ApiResponseClass::sendValidationError($validator->errors()
+        );
         $login = $request['login'];
         $password = $request['password'];
 
