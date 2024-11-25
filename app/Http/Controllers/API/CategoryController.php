@@ -97,6 +97,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $category=$this->CategoryRepository->getById($id);
+            if($this->CategoryRepository->delete($category->id)){
+                return ApiResponseClass::sendResponse($category, "{$category->id} unsaved successfully.");
+            }
+            return ApiResponseClass::sendError("Category with ID {$id} may not be found or not deleted. Try again.");
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error deleting Category: ' . $e->getMessage());
+        }
     }
 }
