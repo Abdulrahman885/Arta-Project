@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Classes\ApiResponseClass;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Exception;
 
 class CategoryController extends Controller
 {
@@ -21,20 +24,35 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $Categories=$this->CategoryRepository->index();
-        return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.'); 
+        try {
+            $Categories=$this->CategoryRepository->index();
+            return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.'); 
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Categories: ' . $e->getMessage());
+        }
+       
     }
 
     public function getParents()
     {
-        $Parents=$this->CategoryRepository->getParents();
-        return ApiResponseClass::sendResponse($Parents,'All Parents retrieved successfully.');
+        try {
+            $Parents=$this->CategoryRepository->getParents();
+            return ApiResponseClass::sendResponse($Parents,'All Parents retrieved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Parents: ' . $e->getMessage());
+        }
+        
     }
 
     public function getChildren($id)
     {
-        $Children=$this->CategoryRepository->getChildren($id);
-        return ApiResponseClass::sendResponse($Children,'All Children retrieved successfully.');
+        try {
+            $Children=$this->CategoryRepository->getChildren($id);
+            return ApiResponseClass::sendResponse($Children,'All Children retrieved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Children: ' . $e->getMessage());
+        }
+        
     }
 
     /**
@@ -42,7 +60,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => ['required','string'],
+                'parent_id' => ['nullable',Rule::exists('categories','id')]
+            ]);
+            if ($validator->fails()) 
+                return ApiResponseClass::sendValidationError($validator->errors()
+            );
+            $Categories=$this->CategoryRepository->store($request->all());
+            return ApiResponseClass::sendResponse($Categories,'category saved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error save category: ' . $e->getMessage());
+        }
+        
     }
 
     /**
