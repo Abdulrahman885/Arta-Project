@@ -96,6 +96,14 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $Region=$this->RegionRepository->getById($id);
+            if($this->RegionRepository->delete($Region->id)){
+                return ApiResponseClass::sendResponse($Region, "{$Region->id} unsaved successfully.");
+            }
+            return ApiResponseClass::sendError("Region with ID {$id} may not be found or not deleted. Try again.");
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error deleting Region: ' . $e->getMessage());
+        }
     }
 }
