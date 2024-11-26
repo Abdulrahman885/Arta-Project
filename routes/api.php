@@ -25,6 +25,7 @@ Route::get('/regions/{id}/children', [RegionController::class,'getChildren']);
 Route::get('/categories/parents', [CategoryController::class,'getParents']);
 Route::get('/categories/{id}/children', [CategoryController::class,'getChildren']);
 
+// ------------- Auth Route ------------- //
 Route::post('/register',[UserAuthController::class,'register']);
 Route::post('/login',[UserAuthController::class,'login']);
 Route::get('/login/google', [UserAuthController::class, 'redirectToGoogle']);

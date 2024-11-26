@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
+use App\Classes\ApiResponseClass;
 use App\Http\Controllers\Controller;
 use App\Repositories\CommentRepository;
 
@@ -21,7 +23,13 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $comments=$this->CommentRepository->index();
+            return ApiResponseClass::sendResponse($comments,'All Comments retrieved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Comments: ' . $e->getMessage());
+        }
+       
     }
 
     /**

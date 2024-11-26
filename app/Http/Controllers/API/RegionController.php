@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Classes\ApiResponseClass;
+use Exception;
 use Illuminate\Http\Request;
+use App\Classes\ApiResponseClass;
 use App\Http\Controllers\Controller;
 use App\Repositories\RegionRepository;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegionController extends Controller
 {
@@ -21,20 +24,35 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $Regions=$this->RegionRepository->index();
-        return ApiResponseClass::sendResponse($Regions, 'All Regions retrieved successfully.');
+        try {
+            $Regions=$this->RegionRepository->index();
+            return ApiResponseClass::sendResponse($Regions, 'All Regions retrieved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Regions: ' . $e->getMessage());
+        }
+       
     }
 
     public function getParents()
     {
-        $Parents=$this->RegionRepository->getParents();
-        return ApiResponseClass::sendResponse($Parents,'All Parents retrieved successfully.');
+        try {
+            $Parents=$this->RegionRepository->getParents();
+            return ApiResponseClass::sendResponse($Parents,'All Parents retrieved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Parents: ' . $e->getMessage());
+        }
+        
     }
 
     public function getChildren($id)
     {
-        $Children=$this->RegionRepository->getChildren($id);
-        return ApiResponseClass::sendResponse($Children,'All Children retrieved successfully.');
+        try {
+            $Children=$this->RegionRepository->getChildren($id);
+            return ApiResponseClass::sendResponse($Children,'All Children retrieved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Children: ' . $e->getMessage());
+        }
+       
     }
 
     /**
@@ -42,7 +60,19 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => ['required','string'],
+                'parent_id' => ['nullable',Rule::exists('Regions','id')]
+            ]);
+            if ($validator->fails()) 
+                return ApiResponseClass::sendValidationError($validator->errors()
+            );
+            $Regions=$this->RegionRepository->store($request->all());
+            return ApiResponseClass::sendResponse($Regions,'Region saved successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error save Region: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -50,7 +80,13 @@ class RegionController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $Region = $this->RegionRepository->getById($id);
+            return ApiResponseClass::sendResponse($Region, " data getted  successfully");
+        }catch(Exception $e)
+        {
+            return ApiResponseClass::sendError('Error returned Region: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -66,6 +102,14 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $Region=$this->RegionRepository->getById($id);
+            if($this->RegionRepository->delete($Region->id)){
+                return ApiResponseClass::sendResponse($Region, "{$Region->id} unsaved successfully.");
+            }
+            return ApiResponseClass::sendError("Region with ID {$id} may not be found or not deleted. Try again.");
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error deleting Region: ' . $e->getMessage());
+        }
     }
 }
