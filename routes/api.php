@@ -2,10 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\RegionController;
 use App\Http\Controllers\API\ListingController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\Auth\UserAuthController;
+
 
 
 Route::get('/user', function (Request $request) {
@@ -13,11 +15,16 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 Route::middleware(['check.auth'])->group(function () {
     Route::post('logout',[UserAuthController::class,'logout']);
+    Route::post('/comment', [CommentController::class, 'store']);
+    Route::post('/listing', [ListingController::class, 'store']);
+    Route::post('/category', [CategoryController::class, 'store']);
+    Route::post('/region', [RegionController::class, 'store']);
 });
 
-Route::apiResource('/category',CategoryController::class);
-Route::apiResource('/region',RegionController::class);
-Route::apiResource('/listing',ListingController::class);
+Route::apiResource('/category',CategoryController::class)->except(['store']);
+Route::apiResource('/region',RegionController::class)->except(['store']);
+Route::apiResource('/listing',ListingController::class)->except(['store']);
+Route::apiResource('/comment',CommentController::class)->except(['store']);
 
 Route::get('/regions/parents', [RegionController::class,'getParents']);
 Route::get('/regions/{id}/children', [RegionController::class,'getChildren']);
