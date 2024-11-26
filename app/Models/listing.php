@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class listing extends Model
 {
-    use HasFactory;
+    use HasFactory,FilterQueryString;
     
     protected $fillable = [
         'title',
@@ -18,6 +19,8 @@ class listing extends Model
         'region_id',
         'status',
     ];
+
+    protected $filters = ['user_id','region_id','category_id'];
 
     public function user()
     {

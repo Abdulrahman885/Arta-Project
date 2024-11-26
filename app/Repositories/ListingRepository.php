@@ -17,7 +17,7 @@ class ListingRepository implements RepositoriesInterface
     
     public function index() : \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-        return listing::paginate(10);
+        return listing::with(['user','category','region'])->filter()->paginate(10);
     }
     
     public function getById($id) : listing

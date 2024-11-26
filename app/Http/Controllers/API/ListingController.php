@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API;
 
 
+use Exception;
 use Illuminate\Http\Request;
+use App\Classes\ApiResponseClass;
 use App\Http\Controllers\Controller;
 use App\Repositories\ListingRepository;
 
@@ -21,7 +23,12 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $listings=$this->ListingRepository->index();
+            return ApiResponseClass::sendResponse($listings, 'All Listings retrieved successfully.'); 
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error retrieving Listings: ' . $e->getMessage());
+        }
     }
 
     /**
