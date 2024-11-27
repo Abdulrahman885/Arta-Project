@@ -44,7 +44,7 @@ class ListingController extends Controller
                 'title'=>['required','string','max:255'],
                 'user_id'=>['required',Rule::exists('users','id')],
                 'description'=>['required','string'],
-                'price'=>['required','numeric','min:0'],
+                'price'=>['required','numeric','between:0,99999999.99'],
                 'category_id'=>['required',Rule::exists('categories','id')],
                 'region_id'=>['required',Rule::exists('regions','id')],
                 'status'=>['required','in:جديد,شبه جديد,مستعمل'],
