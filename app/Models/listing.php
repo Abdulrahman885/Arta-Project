@@ -18,6 +18,7 @@ class listing extends Model
         'category_id',
         'region_id',
         'status',
+        'primary_image'
     ];
 
     protected $filters = ['user_id'];

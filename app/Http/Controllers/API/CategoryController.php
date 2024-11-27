@@ -65,11 +65,11 @@ class CategoryController extends Controller
                 'name' => ['required','string'],
                 'parent_id' => ['nullable',Rule::exists('categories','id')]
             ]);
-            if ($validator->fails()) 
-                return ApiResponseClass::sendValidationError($validator->errors()
-            );
-            $Categories=$this->CategoryRepository->store($request->all());
-            return ApiResponseClass::sendResponse($Categories,'category saved successfully.');
+            if ($validator->fails()){
+                return ApiResponseClass::sendValidationError($validator->errors());
+            }  
+            $Categorie=$this->CategoryRepository->store($request->all());
+            return ApiResponseClass::sendResponse($Categorie,'category saved successfully.');
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error save category: ' . $e->getMessage());
         }

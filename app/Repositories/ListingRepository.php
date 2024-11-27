@@ -5,6 +5,7 @@ use App\Interfaces\RepositoriesInterface;
 use App\Models\listing;
 use App\Models\Region;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 
 class ListingRepository implements RepositoriesInterface
@@ -47,6 +48,11 @@ class ListingRepository implements RepositoriesInterface
 
     public function store(array $data) : listing
     {
+        $extions=$data['primary_image']->getclientoriginalextension();
+        $filename = uniqid('',true).'.'.$extions;
+        $File_path = Storage::putFileAs('Primary_images',$data['primary_image'],$filename);
+        $File_path ='storage/'.$File_path;
+        $data['primary_image']=$File_path;
         return listing::create($data);
     }
 
