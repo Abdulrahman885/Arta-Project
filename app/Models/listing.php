@@ -20,7 +20,7 @@ class listing extends Model
         'status',
     ];
 
-    protected $filters = ['user_id','region_id','category_id'];
+    protected $filters = ['user_id'];
 
     public function user()
     {
@@ -35,5 +35,10 @@ class listing extends Model
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

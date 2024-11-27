@@ -7,7 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface RepositoriesInterface
 {
-    public function index(): LengthAwarePaginator;
+    // public function index(): LengthAwarePaginator;
     public function getById($id ) : ?Model;
     public function store(array $data):Model;
     public function update(array $data,$id):?Model;

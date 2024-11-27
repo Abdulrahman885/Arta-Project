@@ -21,10 +21,10 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $listings=$this->ListingRepository->index();
+            $listings=$this->ListingRepository->index($request->region_id,$request->category_id);
             return ApiResponseClass::sendResponse($listings, 'All Listings retrieved successfully.'); 
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Listings: ' . $e->getMessage());
