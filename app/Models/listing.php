@@ -41,4 +41,9 @@ class listing extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(image::class);
+    }
 }
