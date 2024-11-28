@@ -67,7 +67,13 @@ class ListingController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $listing=$this->ListingRepository->getById($id);
+            return ApiResponseClass::sendResponse($listing, " data getted  successfully");
+        }catch(Exception $e)
+        {
+            return ApiResponseClass::sendError('Error returned Listing: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -83,6 +89,14 @@ class ListingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $Listing=$this->ListingRepository->getById($id);
+            if($this->ListingRepository->delete($Listing->id)){
+                return ApiResponseClass::sendResponse($Listing, "{$Listing->id} unsaved successfully.");
+            }
+            return ApiResponseClass::sendError("Listing with ID {$id} may not be found or not deleted. Try again.");
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error deleting Listing: ' . $e->getMessage());
+        }
     }
 }

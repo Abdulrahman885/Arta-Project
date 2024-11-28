@@ -43,7 +43,7 @@ class ListingRepository implements RepositoriesInterface
     
     public function getById($id) : listing
     {
-        return listing::findOrFail($id);
+        return listing::with(['user','category','region','images','comments'])->findOrFail($id);
     }
 
     public function store(array $data) : listing
@@ -66,6 +66,9 @@ class ListingRepository implements RepositoriesInterface
     public function delete($id) : bool
     {
         $listing = $this->getById($id);
+        if (Storage::exists($listing->primary_image)) {
+            Storage::delete($listing->primary_image);
+        }
         return $listing->delete() > 0;
     }
 }
