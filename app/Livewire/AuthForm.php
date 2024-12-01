@@ -36,6 +36,6 @@ class AuthForm extends Component
 
     public function render()
     {
-        return view('livewire.home_page');
+        return view('livewire.show_info');
     }
 }
