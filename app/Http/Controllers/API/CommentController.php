@@ -32,7 +32,7 @@ class CommentController extends Controller
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Comments: ' . $e->getMessage());
         }
-       
+
     }
 
     /**
@@ -45,7 +45,7 @@ class CommentController extends Controller
                 'content' => ['required','string'],
                 'listing_id'=>['required',Rule::exists('listings','id')]
             ]);
-            if ($validator->fails()) 
+            if ($validator->fails())
                 return ApiResponseClass::sendValidationError($validator->errors()
             );
             $user=PersonalAccessToken::findToken($request->bearerToken())->tokenable;
@@ -62,7 +62,13 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $comment = $this->CommentRepository->getById($id);
+            return ApiResponseClass::sendResponse($comment, " data getted  successfully");
+        }catch(Exception $e)
+        {
+            return ApiResponseClass::sendError('Error returned Comment: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -78,6 +84,14 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $comment=$this->CommentRepository->getById($id);
+            if($this->CommentRepository->delete($comment->id)){
+                return ApiResponseClass::sendResponse($comment, "{$comment->id} unsaved successfully.");
+            }
+            return ApiResponseClass::sendError("Comment with ID {$id} may not be found or not deleted. Try again.");
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error deleting comment: ' . $e->getMessage());
+        }
     }
 }
