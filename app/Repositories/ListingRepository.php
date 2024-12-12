@@ -48,6 +48,7 @@ class ListingRepository implements RepositoriesInterface
 
     public function store(array $data) : listing
     {
+    
         $extions=$data['primary_image']->getclientoriginalextension();
         $filename = uniqid('',true).'.'.$extions;
         $File_path = Storage::putFileAs('Primary_images',$data['primary_image'],$filename);
