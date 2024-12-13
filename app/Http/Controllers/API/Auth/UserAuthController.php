@@ -29,7 +29,7 @@ class UserAuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8',],
+            'password' => ['required', 'string', 'min:8','confirmed'],
             'whatsapp_number'=>['required','string','max:16','regex:/^[0-9]+$/'],
             'contact_number'=>['required','string','max:16','regex:/^[0-9]+$/']
         ]);

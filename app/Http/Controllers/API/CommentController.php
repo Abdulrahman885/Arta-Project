@@ -76,21 +76,21 @@ class CommentController extends Controller
      */
     public function update(Request $request,$id)
     {
-        try {
-            $validator = Validator::make($request->all(), [
-                'content' => ['required','string'],
-                'listing_id'=>['required',Rule::exists('listings','id')]
-            ]);
-            if ($validator->fails())
-                return ApiResponseClass::sendValidationError($validator->errors()
-                );
-            $user=PersonalAccessToken::findToken($request->bearerToken())->tokenable;
-            $request->merge(['user_id' => $user->id]);
-            $comment=$this->CommentRepository->update($request->all(),$id);
-            return ApiResponseClass::sendResponse($comment,'comment is updated successfully.');
-        } catch (Exception $e) {
-            return ApiResponseClass::sendError('Error save comment: ' . $e->getMessage());
-        }
+        // try {
+        //     $validator = Validator::make($request->all(), [
+        //         'content' => ['required','string'],
+        //         'listing_id'=>['required',Rule::exists('listings','id')]
+        //     ]);
+        //     if ($validator->fails())
+        //         return ApiResponseClass::sendValidationError($validator->errors()
+        //         );
+        //     $user=PersonalAccessToken::findToken($request->bearerToken())->tokenable;
+        //     $request->merge(['user_id' => $user->id]);
+        //     $comment=$this->CommentRepository->update($request->all(),$id);
+        //     return ApiResponseClass::sendResponse($comment,'comment is updated successfully.');
+        // } catch (Exception $e) {
+        //     return ApiResponseClass::sendError('Error save comment: ' . $e->getMessage());
+        // }
     }
 
     /**
