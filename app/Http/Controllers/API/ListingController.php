@@ -53,11 +53,7 @@ class ListingController extends Controller
             if ($validator->fails()){
                 return ApiResponseClass::sendValidationError($validator->errors());
             }
-            if ($request->is('api/*')) {
-                $user_id=PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
-            } else {
-                $user_id = auth()->id();
-            }
+            $user_id=PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
             $request->merge(['user_id' => $user_id]);
             $listing=$this->ListingRepository->store($request->all());
             return ApiResponseClass::sendResponse($listing,'listing saved successfully.');
