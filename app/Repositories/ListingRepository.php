@@ -39,7 +39,7 @@ class ListingRepository implements RepositoriesInterface
             }
         }
 
-        return $query->with(['user:id,name,username,email,contact_number,whatsapp_number','category:id,name','region:id,name','images:id,url','comments.user'])->filter()->paginate(10);
+        return $query->with(['user:id,name,username,email,contact_number,whatsapp_number','category:id,name','region:id,name','images','comments.user'])->filter()->paginate(10);
     }
     
     public function getById($id) : listing
