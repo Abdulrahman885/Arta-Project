@@ -59,7 +59,7 @@ class ListingController extends Controller
             $request->merge(['user_id' => $user_id]);
             $listing=$this->ListingRepository->store($request->all());
             if(!empty($request->images)){
-                $this->ListingRepository->saveImages($request->images,$listing->id);
+              $this->ListingRepository->saveImages($request->images,$listing->id);
             }
             return ApiResponseClass::sendResponse($listing,'listing saved successfully.');
         } catch (Exception $e) {
