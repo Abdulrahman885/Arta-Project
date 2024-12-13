@@ -46,9 +46,11 @@ class ListingController extends Controller
                 'description'=>['required','string'],
                 'price'=>['required','numeric','between:0,99999999.99'],
                 'category_id'=>['required',Rule::exists('categories','id')->where(function ($query){return $query->where('parent_id', '!=', null);})],
-                'region_id'=>['required', Rule::exists('regions', 'id')->where(function ($query){return $query->where('parent_id', '!=', null);})],
+                'region_id'=>['required',Rule::exists('regions','id')->where(function ($query){return $query->where('parent_id', '!=', null);})],
                 'status'=>['required','in:جديد,شبه جديد,مستعمل'],
-                'primary_image'=>['required','image','max:2048']
+                'primary_image'=>['required','image','max:2048'],
+                'images' =>['nullable'],
+                'images.*' =>['image']
             ]);
             if ($validator->fails()){
                 return ApiResponseClass::sendValidationError($validator->errors());
@@ -56,6 +58,9 @@ class ListingController extends Controller
             $user_id=PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
             $request->merge(['user_id' => $user_id]);
             $listing=$this->ListingRepository->store($request->all());
+            if(!empty($request->images)){
+                $this->ListingRepository->saveImages($request->images,$listing->id);
+            }
             return ApiResponseClass::sendResponse($listing,'listing saved successfully.');
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error save Listing: ' . $e->getMessage());

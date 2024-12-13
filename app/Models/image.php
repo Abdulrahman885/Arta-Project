@@ -11,7 +11,7 @@ class image extends Model
 
     protected $fillable = [
         'listing_id',
-        'url',
+        'path',
     ];
 
     public function listing()
