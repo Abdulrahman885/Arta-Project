@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/sass/app.scss','resources/js/app.js'])
-    <title>Document</title>
-</head>
+@extends('layouts.head')
 <body>
     {{-- navbar add new listing --}}
     <div class="d-flex flex-row justify-content-between" style="max-height: 90px">
-        <div class="mt-1">    
+        <div class="mt-1">
             <img  width="200px"  src="{{asset('assets/img/icon.png')}}">
         </div>
         <div class="mt-4">
@@ -115,6 +109,6 @@
     </div>
 </div>
 
-    
+
 </body>
 </html>

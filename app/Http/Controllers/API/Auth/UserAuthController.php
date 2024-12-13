@@ -29,11 +29,11 @@ class UserAuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8',],
             'whatsapp_number'=>['required','string','max:16','regex:/^[0-9]+$/'],
             'contact_number'=>['required','string','max:16','regex:/^[0-9]+$/']
         ]);
-        if ($validator->fails()) 
+        if ($validator->fails())
             return ApiResponseClass::sendValidationError($validator->errors()
         );
         $userData=$this->UserRepository->store($request->all());
@@ -46,7 +46,7 @@ class UserAuthController extends Controller
             'login' => ['required','string'],
             'password' => ['required','string']
         ]);
-        if ($validator->fails()) 
+        if ($validator->fails())
             return ApiResponseClass::sendValidationError($validator->errors()
         );
         $login = $request['login'];
@@ -60,7 +60,7 @@ class UserAuthController extends Controller
             return ApiResponseClass::sendResponse($result, 'User logged in successfully');
         }
          return ApiResponseClass::sendError('Unauthorized', ['error' => 'Invalid credentials'], 401);
-        
+
     }
 
     public function redirectToGoogle()

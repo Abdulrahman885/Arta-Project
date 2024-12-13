@@ -30,7 +30,7 @@ class RegionController extends Controller
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Regions: ' . $e->getMessage());
         }
-       
+
     }
 
     public function getParents()
@@ -41,7 +41,7 @@ class RegionController extends Controller
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Parents: ' . $e->getMessage());
         }
-        
+
     }
 
     public function getChildren($id)
@@ -52,7 +52,7 @@ class RegionController extends Controller
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Children: ' . $e->getMessage());
         }
-       
+
     }
 
     /**
@@ -65,7 +65,7 @@ class RegionController extends Controller
                 'name' => ['required','string'],
                 'parent_id' => ['nullable',Rule::exists('Regions','id')]
             ]);
-            if ($validator->fails()) 
+            if ($validator->fails())
                 return ApiResponseClass::sendValidationError($validator->errors()
             );
             $Regions=$this->RegionRepository->store($request->all());
@@ -94,7 +94,19 @@ class RegionController extends Controller
      */
     public function update(Request $request,$id)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => ['required','string'],
+                'parent_id' => ['nullable',Rule::exists('Regions','id')]
+            ]);
+            if ($validator->fails())
+                return ApiResponseClass::sendValidationError($validator->errors()
+                );
+            $Regions=$this->RegionRepository->update($request->all(),$id);
+            return ApiResponseClass::sendResponse($Regions,'Region is updated successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error save Region: ' . $e->getMessage());
+        }
     }
 
     /**

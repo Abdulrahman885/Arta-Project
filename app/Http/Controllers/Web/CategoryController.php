@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
@@ -15,13 +16,14 @@ class CategoryController extends Controller
     {
         //
     }
-    
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $category=Category::all();
+        return view('add_new',compact('category'));
     }
 
     /**

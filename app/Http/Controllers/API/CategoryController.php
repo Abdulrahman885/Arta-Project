@@ -26,11 +26,11 @@ class CategoryController extends Controller
     {
         try {
             $Categories=$this->CategoryRepository->index();
-            return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.'); 
+            return ApiResponseClass::sendResponse($Categories, 'All Categories retrieved successfully.');
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Categories: ' . $e->getMessage());
         }
-       
+
     }
 
     public function getParents()
@@ -41,7 +41,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Parents: ' . $e->getMessage());
         }
-        
+
     }
 
     public function getChildren($id)
@@ -52,7 +52,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error retrieving Children: ' . $e->getMessage());
         }
-        
+
     }
 
     /**
@@ -67,13 +67,13 @@ class CategoryController extends Controller
             ]);
             if ($validator->fails()){
                 return ApiResponseClass::sendValidationError($validator->errors());
-            }  
+            }
             $Categorie=$this->CategoryRepository->store($request->all());
             return ApiResponseClass::sendResponse($Categorie,'category saved successfully.');
         } catch (Exception $e) {
             return ApiResponseClass::sendError('Error save category: ' . $e->getMessage());
         }
-        
+
     }
 
     /**
@@ -95,7 +95,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(),
+                [
+                'name' => ['required','string'],
+                'parent_id' => ['nullable',Rule::exists('categories','id')]
+            ]);
+            if ($validator->fails()){
+                return ApiResponseClass::sendValidationError($validator->errors());
+            }
+            $Categorie=$this->CategoryRepository->update($request->all(), $id);
+            return ApiResponseClass::sendResponse($Categorie,'category is updated successfully.');
+        } catch (Exception $e) {
+            return ApiResponseClass::sendError('Error save category: ' . $e->getMessage());
+        }
     }
 
     /**

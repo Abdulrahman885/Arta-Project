@@ -23,7 +23,7 @@
                         <label class="form-label me-3">اسم المستخدم أو البريد الإلكتروني</label>
                         <input class="form-control py-2 rounded-4 custom-input " type="email" name="email" id="email" value="{{ old('email') }}" required>
                         @error('email')
-                            <span class="" role="alert">
+                            <span class="alert alert-danger" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror

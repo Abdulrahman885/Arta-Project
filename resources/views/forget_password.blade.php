@@ -24,7 +24,7 @@
                     <label class="form-label me-3">البريد الاكتروني</label>
                     <input class="form-control py-2 rounded-4 custom-input" style="width: 100%;padding: 10px 10px;color: #555;max-font-size: 33px"  name="email" id="email" type="email" >
                 </div>
-               
+
                 <div class="text-center"><input class="btn  w-75 mt-4 py-3 rounded-4 text-white" style="background-color: #01496B" type="submit" value="ارسال"></div>
             </form>
             <hr>
@@ -38,16 +38,10 @@
                     <span>المواصلة مع قوقل</span>
                 </div>
             </div>
-    
+
         </div>
-        <div class="text-end d-none d-md-flex me-2 p-3 col-1 px-4">
-            <a href="{{ url('login') }}" style="height: 45px; width: 45px;">
-                <button class="rounded-circle" style="height: 45px; border: none; background-color: #D2E1E8; width: 45px;">
-                    <img src="{{ asset('assets/img/chevron-right.svg') }}">
-                </button>
-            </a>
-        </div>
+
     </div>
-    
+
 </body>
 </html>

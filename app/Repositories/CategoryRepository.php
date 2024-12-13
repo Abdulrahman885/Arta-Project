@@ -14,12 +14,12 @@ class CategoryRepository implements RepositoriesInterface
     {
         //
     }
-    
+
     public function index() : \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         return Category::with(['children','parent'])->paginate(10);
     }
-    
+
     public function getById($id) : Category
     {
         return Category::findOrFail($id);
