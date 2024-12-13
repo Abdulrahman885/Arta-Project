@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ListingRepository;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Laravel\Sanctum\PersonalAccessToken;
 
 
 class ListingController extends Controller
@@ -42,17 +43,22 @@ class ListingController extends Controller
         try {
             $validator = validator::make($request->all(),[
                 'title'=>['required','string','max:255'],
-                'user_id'=>['required',Rule::exists('users','id')],
                 'description'=>['required','string'],
                 'price'=>['required','numeric','between:0,99999999.99'],
-                'category_id'=>['required',Rule::exists('categories','id')],
-                'region_id'=>['required',Rule::exists('regions','id')],
+                'category_id'=>['required',Rule::exists('categories','id')->where(function ($query){return $query->where('parent_id', '!=', null);})],
+                'region_id'=>['required', Rule::exists('regions', 'id')->where(function ($query){return $query->where('parent_id', '!=', null);})],
                 'status'=>['required','in:جديد,شبه جديد,مستعمل'],
                 'primary_image'=>['required','image','max:2048']
             ]);
             if ($validator->fails()){
                 return ApiResponseClass::sendValidationError($validator->errors());
             }
+            if ($request->is('api/*')) {
+                $user_id=PersonalAccessToken::findToken($request->bearerToken())->tokenable_id;
+            } else {
+                $user_id = auth()->id();
+            }
+            $request->merge(['user_id' => $user_id]);
             $listing=$this->ListingRepository->store($request->all());
             return ApiResponseClass::sendResponse($listing,'listing saved successfully.');
         } catch (Exception $e) {
